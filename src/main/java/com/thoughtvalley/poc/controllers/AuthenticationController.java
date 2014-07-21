@@ -1,6 +1,7 @@
 package com.thoughtvalley.poc.controllers;
 
 import com.thoughtvalley.poc.constants.UserRestURIConstants;
+import com.thoughtvalley.poc.models.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;

@@ -10,6 +10,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class AppInitializer implements WebApplicationInitializer{
@@ -20,11 +21,13 @@ public class AppInitializer implements WebApplicationInitializer{
     public void onStartup(ServletContext servletContext) throws ServletException {
 
         log.info("onStartup() method invoked");
-        WebApplicationContext webContext = getContext();
+        AnnotationConfigWebApplicationContext webContext = getContext();
         servletContext.addListener(new ContextLoaderListener(webContext));
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(webContext));
         dispatcher.setLoadOnStartup(IConfigConstants.LOAD_ON_STARTUP_VALUE);
         dispatcher.addMapping(IConfigConstants.MAPPING_URL);
+          servletContext.addFilter("shiroFilter", new DelegatingFilterProxy("shiroFilterBean", webContext))
+                .addMappingForUrlPatterns(null, false, "");
     }
 
 
