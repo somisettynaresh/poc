@@ -1,10 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
+	mavenLocal()
     mavenCentral()
 }
 
@@ -20,6 +21,7 @@ dependencies {
     compile 'org.springframework:spring-web:4.0.0.RELEASE'
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version: '1.0.0.Final'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.1.4.Final'
+    compile group : 'mysql',name:'mysql-connector-java',version : '5.1.30'
     compile group: 'org.hsqldb', name: 'hsqldb', version: '2.2.8'
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     compile group: 'log4j', name: 'log4j', version:'1.2.16'
@@ -31,4 +33,9 @@ dependencies {
     compile 'com.google.guava:guava:17.0'
     compile 'javax:javaee-api:7.0'
     compile 'antlr:antlr:2.7.7'
+}
+
+task deployToTomcat(type: Copy) {
+    from war
+    into "C:/dev/softwares/apache-tomcat-7.0.54/webapps"
 }

@@ -72,6 +72,7 @@
     <orderEntry type="library" exported="" name="Gradle: spring-jdbc-4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-aop-4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-expression-4.0.0.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: mysql-connector-java-5.1.30" level="project" />
   </component>
 </module>
 

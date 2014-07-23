@@ -2,11 +2,17 @@ package com.thoughtvalley.poc.config;
 
 
 import com.thoughtvalley.poc.constants.IConfigConstants;
+import com.thoughtvalley.poc.dao.TransactionDao;
+import com.thoughtvalley.poc.dao.impl.TransactionDaoImpl;
+
 import org.apache.log4j.Logger;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,9 +22,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @Import({ WebConfig.class})
 @Configuration
+@ImportResource("classpath:Hibernate.xml")
 public class AppConfig extends WebMvcConfigurerAdapter  {
 
     private static final Logger log = Logger.getLogger(AppConfig.class);
+    
+    @Autowired
+    public SessionFactory sessionFactory;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry)
@@ -52,7 +62,14 @@ public class AppConfig extends WebMvcConfigurerAdapter  {
     }
 
 
-
+    @Bean 
+    public TransactionDao createTransactionDao(){
+    	TransactionDaoImpl transactionDao = new TransactionDaoImpl();
+    	transactionDao.setSessionFactory(sessionFactory);
+    	return transactionDao;
+    }
+    
+    
 
 }
 
