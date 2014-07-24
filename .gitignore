@@ -1,6 +1,6 @@
 *.class
 /bin
-/.gradle
+.gradle/
 /.idea
 .idea/
 # Mobile Tools for Java (J2ME)
