@@ -26,7 +26,7 @@ public class AppInitializer implements WebApplicationInitializer{
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(webContext));
         dispatcher.setLoadOnStartup(IConfigConstants.LOAD_ON_STARTUP_VALUE);
         dispatcher.addMapping(IConfigConstants.MAPPING_URL);
-          servletContext.addFilter("shiroFilter", new DelegatingFilterProxy("shiroFilterBean", webContext))
+          servletContext.addFilter("shiroFilter", new DelegatingFilterProxy("shiroFilter", webContext))
                 .addMappingForUrlPatterns(null, false, "");
     }
 

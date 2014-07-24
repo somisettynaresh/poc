@@ -23,8 +23,8 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 
 	@Override
-	public List<Transaction> fetchAll() {
-		return getSessionFactory().getCurrentSession().createQuery("from Transaction").list();
+    public List<Transaction> fetchAll() {
+		return getSessionFactory().openSession().createQuery("from Transaction").list();
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class CustomerTransactionServiceImpl implements CustomerTransactionServic
 
     @Override
     public List<Transaction> fetchAll() {
-        return null;
+        return transactionDao.fetchAll();
     }
 
     @Override

@@ -35,7 +35,9 @@ dependencies {
     compile 'antlr:antlr:2.7.7'
 }
 
-task deployToTomcat(type: Copy) {
+task deploy(type: Copy) {
     from war
     into "C:/dev/softwares/apache-tomcat-7.0.54/webapps"
 }
+
+

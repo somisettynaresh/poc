@@ -6,6 +6,8 @@ import com.thoughtvalley.poc.service.CustomerTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value="/transactions")
 public class CustomerTransactionController {
@@ -25,4 +27,11 @@ public class CustomerTransactionController {
         customerTransactionService.save(transaction);
 
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Transaction> fetchAll(){
+        return customerTransactionService.fetchAll();
+
+    }
+
 }

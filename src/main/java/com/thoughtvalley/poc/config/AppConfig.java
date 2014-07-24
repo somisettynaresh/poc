@@ -39,6 +39,7 @@ public class AppConfig extends WebMvcConfigurerAdapter  {
         registry.addResourceHandler(IConfigConstants.IMAGE_HANDLER).addResourceLocations(IConfigConstants.IMAGE_LOCATION).setCachePeriod(IConfigConstants.CACHE_PERIOD_DEFAULT);
         registry.addResourceHandler(IConfigConstants.CSS_HANDLER).addResourceLocations(IConfigConstants.CSS_LOCATION).setCachePeriod(IConfigConstants.CACHE_PERIOD_DEFAULT);
         registry.addResourceHandler(IConfigConstants.SCRIPT_HANDLER).addResourceLocations(IConfigConstants.SCRIPT_LOCATION).setCachePeriod(IConfigConstants.CACHE_PERIOD_DEFAULT);
+        registry.addResourceHandler(IConfigConstants.VIEW_HANDLER).addResourceLocations(IConfigConstants.VIEW_LOCATION).setCachePeriod(IConfigConstants.CACHE_PERIOD_DEFAULT);
     }
 
 
