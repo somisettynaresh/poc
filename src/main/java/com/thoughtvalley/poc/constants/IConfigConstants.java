@@ -6,7 +6,7 @@ package com.thoughtvalley.poc.constants;
 public interface IConfigConstants {
 
 
-    public static final String CONFIG_LOCATION = "org.ec.app.config";
+    public static final String CONFIG_LOCATION = "com.thoughtvalley.poc.config";
     public static final String MAPPING_URL = "/";
 
     public static final Integer LOAD_ON_STARTUP_VALUE=1;

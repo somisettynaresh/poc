@@ -33,6 +33,10 @@ dependencies {
     compile 'com.google.guava:guava:17.0'
     compile 'javax:javaee-api:7.0'
     compile 'antlr:antlr:2.7.7'
+    compile 'com.google.code.spring-crypto-utils:spring-crypto-utils:1.3.0'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.50'
+    compile 'mysql:mysql-connector-java:5.1.6'
+
 }
 
 task deploy(type: Copy) {

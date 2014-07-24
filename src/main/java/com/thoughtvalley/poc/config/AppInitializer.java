@@ -8,7 +8,6 @@ import com.thoughtvalley.poc.constants.IConfigConstants;
 import org.apache.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -26,8 +25,9 @@ public class AppInitializer implements WebApplicationInitializer{
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(webContext));
         dispatcher.setLoadOnStartup(IConfigConstants.LOAD_ON_STARTUP_VALUE);
         dispatcher.addMapping(IConfigConstants.MAPPING_URL);
-          servletContext.addFilter("shiroFilter", new DelegatingFilterProxy("shiroFilter", webContext))
-                .addMappingForUrlPatterns(null, false, "");
+        servletContext.addFilter("shiroFilter", new DelegatingFilterProxy("shiroFilter", webContext))
+                .addMappingForUrlPatterns(null, true, "/api/*");
+
     }
 
 
