@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.thoughtvalley.poc.security.models.AuthToken;
 import com.thoughtvalley.poc.security.models.Credentials;
 import com.thoughtvalley.poc.security.token.TokenService;
+import com.thoughtvalley.poc.util.CustomerContext;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -32,6 +33,7 @@ public class LoginController implements ApplicationContextAware {
 	public Response login(@RequestBody Credentials credentials, HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();
 		subject.login(new UsernamePasswordToken(credentials.username, credentials.password, false));
+        CustomerContext.setCurrentCustomer(credentials.username);
 		AuthToken tokenObject = new AuthToken();
 		tokenObject.setUsername(credentials.username);
 		tokenObject.setExpireTimestamp(System.currentTimeMillis()+TOKEN_TIMEOUT_MILLIS);

@@ -11,20 +11,36 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context">
 
-    <bean id="transactionDataSource"
+    <bean id="customer1DataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/poc_customer1"/>
         <property name="username" value="root"/>
-        <property name="password" value="Pa55word"/>
+        <property name="password" value=""/>
+    </bean>
+    <bean id="customer2DataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/poc_customer2"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
     </bean>
 
+
+    <bean id="routingDataSource" class="com.thoughtvalley.poc.dao.CustomerRouterDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="c1" value-ref="customer1DataSource"/>
+                <entry key="c2" value-ref="customer2DataSource"/>
+            </map>
+        </property>
+    </bean>
     <!-- Hibernate session factory -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 
         <property name="dataSource">
-            <ref bean="transactionDataSource"/>
+            <ref bean="routingDataSource"/>
         </property>
 
         <property name="hibernateProperties">

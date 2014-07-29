@@ -28,7 +28,7 @@ public class AuthenticationController {
         }
         catch(AuthenticationException ex){
            ex.printStackTrace();
-            return new ResponseEntity(of("error", "Invalid Username or Password"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(of("error", "Invalid Username or Password"), HttpStatus.UNAUTHORIZED);
         }
     }
 

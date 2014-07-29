@@ -3,20 +3,14 @@ package com.thoughtvalley.poc.config;
 import com.springcryptoutils.core.cipher.Mode;
 import com.springcryptoutils.core.cipher.symmetric.Cipherer;
 import com.springcryptoutils.core.cipher.symmetric.CiphererImpl;
-import com.springcryptoutils.core.key.PrivateKeyFactoryBean;
-import com.springcryptoutils.core.key.PublicKeyFactoryBean;
-import com.springcryptoutils.core.key.SecretKeyFactoryBean;
-import com.springcryptoutils.core.keystore.KeyStoreFactoryBean;
 import com.springcryptoutils.core.signature.Signer;
 import com.springcryptoutils.core.signature.SignerImpl;
 import com.springcryptoutils.core.signature.Verifier;
 import com.springcryptoutils.core.signature.VerifierImpl;
-import com.springcryptoutils.core.spring.cipher.symmetric.SymmetricCiphererWithStaticKeyBeanDefinitionParser;
 import com.thoughtvalley.poc.security.realms.TokenRealm;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
-import org.apache.shiro.realm.text.IniRealm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -24,16 +18,17 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.Resource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.security.*;
-import java.security.cert.*;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,9 +58,9 @@ public class WebConfig {
     public DataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/shiroExample");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/poc_users");
         dataSource.setUsername("root");
-        dataSource.setPassword("Pa55word");
+       // dataSource.setPassword("");
         return dataSource;
     }
     @Bean
